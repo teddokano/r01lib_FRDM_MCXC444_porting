@@ -21,7 +21,6 @@ extern "C" {
 #define	SPI_FREQ		1000000UL
 
 
-#ifdef	C444
 /** SPI class
  *	
  *  @class SPI
@@ -75,12 +74,15 @@ public:
 	status_t				last_status;
 
 private:
+#ifdef	CPU_MCXC444VLH
+	spi_master_config_t		masterConfig;
+	SPI_Type				*unit_base;
+#else
 	lpspi_master_config_t	masterConfig;
 	LPSPI_Type				*unit_base;
+#endif
 	uint32_t				master_clk_freq;
 	uint32_t				master_pcs_4_xfer;
 };
 
-
-#endif	//	C444
 #endif // R01LIB_SPI_H

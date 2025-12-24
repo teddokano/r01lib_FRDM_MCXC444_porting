@@ -12,7 +12,7 @@
  * Definitions
  ******************************************************************************/
 /*${macro:start}*/
-#define EXAMPLE_SPI_MASTER              SPI0
+#define EXAMPLE_SPI_MASTER              SPI1
 #define EXAMPLE_SPI_MASTER_SOURCE_CLOCK kCLOCK_BusClk
 #define EXAMPLE_SPI_MASTER_CLK_FREQ     CLOCK_GetFreq(kCLOCK_BusClk)
 /*${macro:end}*/

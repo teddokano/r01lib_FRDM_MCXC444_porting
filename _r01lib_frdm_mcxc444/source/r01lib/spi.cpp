@@ -25,7 +25,7 @@ extern "C" {
 
 #ifdef	CPU_MCXC444VLH
 
-#define EXAMPLE_SPI_MASTER              SPI0
+#define EXAMPLE_SPI_MASTER              SPI1
 #define EXAMPLE_SPI_MASTER_SOURCE_CLOCK kCLOCK_BusClk
 #define EXAMPLE_SPI_MASTER_CLK_FREQ     CLOCK_GetFreq( kCLOCK_BusClk )
 
@@ -66,7 +66,7 @@ void SPI::frequency( uint32_t frequency )
 {
 	masterConfig.baudRate_Bps = frequency;
 
-	SPI_Deinit( unit_base );
+//	SPI_Deinit( unit_base );
 	SPI_MasterInit( unit_base, &masterConfig, master_clk_freq );
 }
 
@@ -75,7 +75,7 @@ void SPI::mode( uint8_t mode )
 	masterConfig.polarity	= (spi_clock_polarity_t)((mode >> 1) & 0x1);
 	masterConfig.phase		= (spi_clock_phase_t   )((mode >> 0) & 0x1);
 
-	SPI_Deinit( unit_base );
+//	SPI_Deinit( unit_base );
 	SPI_MasterInit( unit_base, &masterConfig, master_clk_freq );
 }
 

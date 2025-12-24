@@ -86,18 +86,6 @@ void irq_handler( int num )
 	SDK_ISR_EXIT_BARRIER;
 }
 
-#if 0
-void PORTA_DriverIRQHandler( void )
-{
-	_PortIRQHandler();
-}
-
-void PORTC_PORTD_DriverIRQHandler( void )
-{
-	_PortIRQHandler();
-}
-#endif
-
 #endif
 
 
@@ -143,8 +131,6 @@ void InterruptIn::regist( func_ptr callback, port_interrupt_t type )
 	uint32_t ofst	= ((uint32_t)gpio_n - (uint32_t)GPIOA);
 	uint32_t step	= ((uint32_t)GPIOB - (uint32_t)GPIOA);
 	uint32_t idx	= ofst / step;
-	
-	printf( "%lu\r\n", idx );
 	
 	if ( irqn[ idx ] == NotAvail_IRQn )
 	{

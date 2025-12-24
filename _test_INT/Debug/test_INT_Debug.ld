@@ -6,11 +6,11 @@
  * Generated linker script file for MCXC444
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/12/25 4:54:55
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/12/25 5:15:14
  */
 
-INCLUDE "frdmmcxc444_gpio_input_interrupt_Debug_library.ld"
-INCLUDE "frdmmcxc444_gpio_input_interrupt_Debug_memory.ld"
+INCLUDE "test_INT_Debug_library.ld"
+INCLUDE "test_INT_Debug_memory.ld"
 
 ENTRY(ResetISR)
 
@@ -50,6 +50,36 @@ SECTIONS
        *(.text*)
        *(.rodata .rodata.* .constdata .constdata.*)
        . = ALIGN(4);
+            /* C++ constructors etc */
+            . = ALIGN(4);
+            KEEP(*(.init))
+            
+            . = ALIGN(4);
+            __preinit_array_start = .;
+            KEEP (*(.preinit_array))
+            __preinit_array_end = .;
+            
+            . = ALIGN(4);
+            __init_array_start = .;
+            KEEP (*(SORT(.init_array.*)))
+            KEEP (*(.init_array))
+            __init_array_end = .;
+            
+            KEEP(*(.fini));
+            
+            . = ALIGN(4);
+            KEEP (*crtbegin.o(.ctors))
+            KEEP (*(EXCLUDE_FILE (*crtend.o) .ctors))
+            KEEP (*(SORT(.ctors.*)))
+            KEEP (*crtend.o(.ctors))
+            
+            . = ALIGN(4);
+            KEEP (*crtbegin.o(.dtors))
+            KEEP (*(EXCLUDE_FILE (*crtend.o) .dtors))
+            KEEP (*(SORT(.dtors.*)))
+            KEEP (*crtend.o(.dtors))
+            . = ALIGN(4);
+            /* End C++ */
     } > PROGRAM_FLASH
     /*
      * for exception handling/unwind - some Newlib functions (in common

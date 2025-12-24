@@ -6,12 +6,17 @@
  * Generated linker script file for MCXC444
  * Created from library.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/12/25 4:54:55
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/12/25 4:22:21
  */
 
 GROUP (
-  "libcr_nohost_nf.a"
-  "libcr_c.a"
-  "libcr_eabihelpers.a"
   "libgcc.a"
+  "libc_nano.a"
+  "libstdc++_nano.a"
+  "libm.a"
+  "libcr_newlib_semihost.a"
+  "crti.o"
+  "crtn.o"
+  "crtbegin.o"
+  "crtend.o"
 )

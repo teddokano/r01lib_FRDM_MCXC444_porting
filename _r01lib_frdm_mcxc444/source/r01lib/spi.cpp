@@ -34,10 +34,8 @@ SPI::SPI( int mosi, int miso, int sclk, int cs ) : Obj( true )
 	unit_base			= EXAMPLE_SPI_MASTER;
 	master_clk_freq		= EXAMPLE_SPI_MASTER_CLK_FREQ;
 
-	spi_master_config_t userConfig = {0};
-
-	SPI_MasterGetDefaultConfig( &userConfig );
-	SPI_MasterInit( unit_base, &userConfig, master_clk_freq );
+	SPI_MasterGetDefaultConfig( &masterConfig );
+	SPI_MasterInit( unit_base, &masterConfig, master_clk_freq );
 
 	frequency( SPI_FREQ );
 	mode( 0 );
@@ -64,7 +62,7 @@ SPI::~SPI()
 
 void SPI::frequency( uint32_t frequency )
 {
-	masterConfig.baudRate_Bps = frequency;
+	masterConfig.baudRate_Bps = frequency / 2;	//	This may be a problem of SDK v25.12
 
 //	SPI_Deinit( unit_base );
 	SPI_MasterInit( unit_base, &masterConfig, master_clk_freq );

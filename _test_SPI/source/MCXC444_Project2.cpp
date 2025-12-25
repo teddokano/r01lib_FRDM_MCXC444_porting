@@ -5,7 +5,7 @@ int main( void )
 {
 	SPI			spi( D11, D12, D13, D10 );	//	MOSI, MISO, SCLK, CS
 
-	spi.frequency( 2000000 );
+	spi.frequency( 2'000'000 );
 	spi.mode( 0 );
 
 	uint8_t	write_data[ 8 ]	= { 0x00, 0x01, 0x02, 0x03, 0xFF, 0xFE, 0xFD, 0xFC };

@@ -10,12 +10,11 @@ extern "C" {
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "board.h"
+#include "fsl_debug_console.h"
 
 #ifdef	CPU_MCXC444VLH
-#include "debug_console_lite/fsl_debug_console.h"
 #include "fsl_i2c.h"
 #else
-#include "fsl_debug_console.h"
 #include "fsl_lpi2c.h"
 #endif
 

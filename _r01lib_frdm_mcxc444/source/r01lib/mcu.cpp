@@ -11,16 +11,15 @@ extern "C" {
 #include "clock_config.h"
 #include "board.h"
 #include "fsl_clock.h"
-
-#ifdef	C444
-#include "fsl_reset.h"
-#include "fsl_utick.h"
 #include "fsl_debug_console.h"
-#include "fsl_i3c.h"
-#include "fsl_lpi2c.h"
+
+#if	CPU_MCXC444VLH
+	#include "fsl_i2c.h"
 #else
-#include "debug_console_lite/fsl_debug_console.h"
-#include "fsl_i2c.h"
+	#include "fsl_reset.h"
+	#include "fsl_utick.h"
+	#include "fsl_i3c.h"
+	#include "fsl_lpi2c.h"
 #endif
 }
 

@@ -12,11 +12,7 @@ int main(void) {
 
     printf("Hello World\r\n");
 
-    volatile int	*prt	= new int[5'000'000];
-
-    printf( "%lx\r\n", (uint32_t)prt );
-
-	auto	count	= 0;
+    auto	count	= 0;
 	
     while ( true )
     {
@@ -24,16 +20,6 @@ int main(void) {
 			led[ i ]	= (count + i) % 3 ? true : false;
 		
 		count++;
-		delay();
+		wait( 0.5 );
 	}
-}
-
-
-void delay(void)
-{
-    volatile uint32_t i = 0;
-    for (i = 0; i < 500000; ++i)
-    {
-        __asm("NOP"); /* delay */
-    }
 }

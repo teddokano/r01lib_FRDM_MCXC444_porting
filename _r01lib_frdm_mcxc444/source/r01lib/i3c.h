@@ -14,8 +14,7 @@
 #ifndef R01LIB_I3C_H
 #define R01LIB_I3C_H
 
-#ifdef	C444
-
+#ifndef	CPU_MCXC444VLH
 
 #include	"i2c.h"
 #include	"fsl_i3c.h"
@@ -220,5 +219,5 @@ private:
 	bool										first_broadcast;
 };
 
-#endif	//	C444
+#endif // !CPU_MCXC444VLH
 #endif // R01LIB_I3C_H

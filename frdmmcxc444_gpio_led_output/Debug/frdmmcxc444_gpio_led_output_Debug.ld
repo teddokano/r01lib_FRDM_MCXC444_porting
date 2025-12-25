@@ -6,7 +6,7 @@
  * Generated linker script file for MCXC444
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/12/26 3:42:53
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/12/26 3:54:49
  */
 
 INCLUDE "frdmmcxc444_gpio_led_output_Debug_library.ld"

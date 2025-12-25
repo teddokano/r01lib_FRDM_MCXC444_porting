@@ -1,11 +1,14 @@
 /*
- * Copyright 2024 NXP
+ *  @author Tedd OKANO
  *
- * SPDX-License-Identifier: BSD-3-Clause
- *
+ *  Released under the MIT license License
  */
 
-#include "../_r01lib_irq/irq.h"
+#include	"fsl_port.h"
+#include	"fsl_gpio.h"
+#include	"fsl_common.h"
+#include	"fsl_debug_console.h"
+#include	"irq.h"
 
 #ifdef	CPU_MCXN947VDF
 void GPIO00_IRQHandler( void )
@@ -42,8 +45,6 @@ void PORTC_PORTD_DriverIRQHandler( void )
 {
 	irq_handler( 1 );
 }
-
-
 
 #else // CPU_MCXN947VDF
 void GPIO0_IRQHandler( void )

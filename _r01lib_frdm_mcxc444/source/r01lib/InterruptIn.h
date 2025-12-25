@@ -15,7 +15,9 @@
 #define R01LIB_INTERRUPTIN_H
 
 extern "C" {
-//	C444	#include	"fsl_utick.h"
+#ifndef	CPU_MCXC444VLH
+#include	"fsl_utick.h"
+#endif
 }
 
 #include	"io.h"

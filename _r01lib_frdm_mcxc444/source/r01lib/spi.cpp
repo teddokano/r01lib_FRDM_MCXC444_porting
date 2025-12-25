@@ -9,13 +9,12 @@ extern "C" {
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "board.h"
-
-#ifdef	C444
 #include "fsl_debug_console.h"
-#include "fsl_lpspi.h"
-#else
-#include "debug_console_lite/fsl_debug_console.h"
+
+#ifdef	CPU_MCXC444VLH
 #include "fsl_spi.h"
+#else
+#include "fsl_lpspi.h"
 #endif
 }
 
@@ -128,7 +127,6 @@ status_t SPI::write( uint8_t *wp, uint8_t *rp, int length )
 	#define EXAMPLE_LPSPI_MASTER_PCS_FOR_INIT     (kLPSPI_Pcs1)
 	#define EXAMPLE_LPSPI_MASTER_PCS_FOR_TRANSFER (kLPSPI_MasterPcs1)
 	#define EXAMPLE_LPSPI_MASTER_IRQHandler       (LPSPI1_IRQHandler)
-#elif	CPU_MCXC444VLH
 #else
 	#error Not supported CPU
 #endif

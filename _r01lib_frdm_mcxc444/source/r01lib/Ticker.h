@@ -7,7 +7,7 @@
 #ifndef R01LIB_TICKER_H
 #define R01LIB_TICKER_H
 
-#ifdef	C444
+#ifndef	CPU_MCXC444VLH
 
 #include <functional>
 
@@ -51,6 +51,6 @@ private:
 	UTICK_Type	*utick_type;
 };
 
-#endif	//	C444
+#endif // !CPU_MCXC444VLH
 
 #endif // R01LIB_TICKER_H

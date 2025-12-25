@@ -32,5 +32,4 @@ OBJS :=
 SUBDIRS := \
 _r01lib_irq \
 source \
-startup \
 

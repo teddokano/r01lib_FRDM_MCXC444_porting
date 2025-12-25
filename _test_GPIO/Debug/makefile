@@ -8,7 +8,6 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include startup/subdir.mk
 -include source/subdir.mk
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(C++M_DEPS)),)
@@ -48,7 +47,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := MCXC444_Project2
+BUILD_ARTIFACT_NAME := _test_GPIO
 BUILD_ARTIFACT_EXTENSION := axf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -60,24 +59,24 @@ all:
 	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
-main-build: MCXC444_Project2.axf
+main-build: _test_GPIO.axf
 
 # Tool invocations
-MCXC444_Project2.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
+_test_GPIO.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU C++ Linker'
-	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_FRDM_MCXC444_porting/_r01lib_frdm_mcxc444/Debug" -Xlinker -Map="MCXC444_Project2.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T MCXC444_Project2_Debug.ld -o "MCXC444_Project2.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxc444
+	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_FRDM_MCXC444_porting/_r01lib_frdm_mcxc444/Debug" -Xlinker -Map="_test_GPIO.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T test_GPIO_Debug.ld -o "_test_GPIO.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxc444
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) MCXC444_Project2.axf
+	-$(RM) _test_GPIO.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "MCXC444_Project2.axf"; # arm-none-eabi-objcopy -v -O binary "MCXC444_Project2.axf" "MCXC444_Project2.bin" ; # checksum -p MCXC444 -d "MCXC444_Project2.bin";
+	-arm-none-eabi-size "_test_GPIO.axf"; # arm-none-eabi-objcopy -v -O binary "_test_GPIO.axf" "_test_GPIO.bin" ; # checksum -p MCXC444 -d "_test_GPIO.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents main-build post-build

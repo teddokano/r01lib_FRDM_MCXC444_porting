@@ -42,7 +42,7 @@ main-build: frdmmcxc444_gpio_led_output2.axf
 frdmmcxc444_gpio_led_output2.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -L"/Users/tedd/dev/mcuxpresso/c444/_r01lib_frdm_mcxc444/Debug" -Xlinker -no-warn-rwx-segments -Xlinker -Map="frdmmcxc444_gpio_led_output2.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T frdmmcxc444_gpio_led_output2_Debug.ld -o "frdmmcxc444_gpio_led_output2.axf" $(OBJS) $(USER_OBJS) $(LIBS) -Wl,--start-group -l_r01lib_frdm_mcxc444 -Wl,--end-group
+	arm-none-eabi-gcc -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_FRDM_MCXC444_porting/_r01lib_frdm_mcxc444/Debug" -Xlinker -no-warn-rwx-segments -Xlinker -Map="frdmmcxc444_gpio_led_output2.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T frdmmcxc444_gpio_led_output2_Debug.ld -o "frdmmcxc444_gpio_led_output2.axf" $(OBJS) $(USER_OBJS) $(LIBS) -Wl,--start-group -l_r01lib_frdm_mcxc444 -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

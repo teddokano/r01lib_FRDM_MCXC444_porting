@@ -12,6 +12,10 @@ int main(void) {
 
     printf("Hello World\r\n");
 
+    volatile int	*prt	= new int[5'000'000];
+
+    printf( "%lx\r\n", (uint32_t)prt );
+
 	auto	count	= 0;
 	
     while ( true )

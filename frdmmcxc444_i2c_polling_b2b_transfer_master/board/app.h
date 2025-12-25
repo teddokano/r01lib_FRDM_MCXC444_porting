@@ -15,7 +15,7 @@
 /* I2C source clock */
 #define I2C_MASTER_CLK_SRC          I2C0_CLK_SRC
 #define I2C_MASTER_CLK_FREQ         CLOCK_GetFreq(I2C0_CLK_SRC)
-#define EXAMPLE_I2C_MASTER_BASEADDR I2C0
+#define EXAMPLE_I2C_MASTER_BASEADDR I2C1
 #define WAIT_TIME                   10U
 /*${macro:end}*/
 

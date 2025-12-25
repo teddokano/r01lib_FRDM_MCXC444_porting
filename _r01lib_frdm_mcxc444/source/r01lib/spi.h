@@ -8,10 +8,10 @@
 #define R01LIB_SPI_H
 
 extern "C" {
-#ifdef	C444
-#include "fsl_lpspi.h"
-#else
+#ifdef	CPU_MCXC444VLH
 #include "fsl_spi.h"
+#else
+#include "fsl_lpspi.h"
 #endif
 }
 

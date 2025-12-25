@@ -9,17 +9,15 @@
 
 #include	<string.h>
 
-#ifdef	C444
-#include "fsl_lpi2c.h"
-#else
+#ifdef	CPU_MCXC444VLH
 #include "fsl_i2c.h"
+#else
+#include "fsl_lpi2c.h"
 #endif
 
 #include	"obj.h"
 #include	"io.h"
 
-
-#ifdef	C444
 /** I2C class
  *	
  *  @class I2C
@@ -233,11 +231,16 @@ protected:
 	virtual status_t	read_core( uint8_t address, uint8_t *dp, int length, bool stop = STOP );
 	
 private:
+#if	CPU_MCXC444VLH
+	i2c_master_config_t		masterConfig;
+	I2C_Type				*unit_base;
+#else
 	lpi2c_master_config_t	masterConfig;
 	LPI2C_Type				*unit_base;
+#endif
 	DigitalInOut			_sda;
 	DigitalInOut			_scl;
 	err_cb_ptr				err_cb;
 };
-#endif
+
 #endif // R01LIB_I2C_H

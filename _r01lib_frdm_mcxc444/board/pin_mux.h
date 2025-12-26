@@ -25,27 +25,6 @@ extern "C" {
  */
 void BOARD_InitBootPins(void);
 
-#define SOPT5_LPUART0RXSRC_LPUART_RX 0x00u /*!<@brief LPUART0 Receive Data Source Select: LPUART_RX pin */
-#define SOPT5_LPUART0TXSRC_LPUART_TX 0x00u /*!<@brief LPUART0 Transmit Data Source Select: LPUART0_TX pin */
-
-/*! @name PORTA1 (number 23), PTA1/J1[2]
-  @{ */
-
-/* Symbols to be used with PORT driver */
-#define BOARD_INITPINS_DEBUG_UART_RX_PORT PORTA               /*!<@brief PORT peripheral base pointer */
-#define BOARD_INITPINS_DEBUG_UART_RX_PIN 1U                   /*!<@brief PORT pin number */
-#define BOARD_INITPINS_DEBUG_UART_RX_PIN_MASK (1U << 1U)      /*!<@brief PORT pin mask */
-                                                              /* @} */
-
-/*! @name PORTA2 (number 24), PTA2/J1[4]
-  @{ */
-
-/* Symbols to be used with PORT driver */
-#define BOARD_INITPINS_DEBUG_UART_TX_PORT PORTA               /*!<@brief PORT peripheral base pointer */
-#define BOARD_INITPINS_DEBUG_UART_TX_PIN 2U                   /*!<@brief PORT pin number */
-#define BOARD_INITPINS_DEBUG_UART_TX_PIN_MASK (1U << 2U)      /*!<@brief PORT pin mask */
-                                                              /* @} */
-
 /*! @name PORTA4 (number 26), PTA4/J1[10]
   @{ */
 

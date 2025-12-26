@@ -13,6 +13,17 @@ RM := rm -rf
 -include utilities/subdir.mk
 -include startup/subdir.mk
 -include source/r01lib/subdir.mk
+-include source/r01device/rtc/tzcode/subdir.mk
+-include source/r01device/rtc/subdir.mk
+-include source/r01device/mux_sw/subdir.mk
+-include source/r01device/misc/potentiometer/subdir.mk
+-include source/r01device/misc/lcd/subdir.mk
+-include source/r01device/misc/eeprom/subdir.mk
+-include source/r01device/led/subdir.mk
+-include source/r01device/lcd/subdir.mk
+-include source/r01device/gpio/subdir.mk
+-include source/r01device/afe/subdir.mk
+-include source/r01device/subdir.mk
 -include drivers/subdir.mk
 -include device/subdir.mk
 -include component/uart/subdir.mk

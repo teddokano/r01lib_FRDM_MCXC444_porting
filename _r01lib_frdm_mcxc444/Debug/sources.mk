@@ -34,6 +34,17 @@ board \
 component/uart \
 device \
 drivers \
+source/r01device \
+source/r01device/afe \
+source/r01device/gpio \
+source/r01device/lcd \
+source/r01device/led \
+source/r01device/misc/eeprom \
+source/r01device/misc/lcd \
+source/r01device/misc/potentiometer \
+source/r01device/mux_sw \
+source/r01device/rtc \
+source/r01device/rtc/tzcode \
 source/r01lib \
 startup \
 utilities/debug_console_lite \

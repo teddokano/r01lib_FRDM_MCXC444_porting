@@ -66,7 +66,7 @@ main-build: _test_INT.axf
 _test_INT.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU C++ Linker'
-	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_FRDM_MCXC444_porting/_r01lib_frdm_mcxc444/Debug" -Xlinker -Map="_test_INT.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T test_INT_Debug.ld -o "_test_INT.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxc444
+	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_FRDM_MCXC444_porting/_r01lib_frdm_mcxc444/Debug" -Xlinker -Map="_test_INT.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T test_INT_Multiple_configurations.ld -o "_test_INT.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxc444
 	@echo 'Finished building target: $@'
 	@echo ' '
 

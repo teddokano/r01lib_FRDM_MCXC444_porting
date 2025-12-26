@@ -39,12 +39,3 @@ int main( void )
 		wait( 0.1 );
 	}
 }
-
-void delay(void)
-{
-    volatile uint32_t i = 0;
-    for (i = 0; i < 500000; ++i)
-    {
-        __asm("NOP"); /* delay */
-    }
-}

@@ -4,9 +4,9 @@
  *  Released under the MIT license License
  */
 
-#ifndef	CPU_MCXC444VLH
+#include "i3c.h"
 
-#include "r01lib.h"
+#ifdef I3C_SUPPORTED
 
 extern "C" {
 #include	<string.h>
@@ -294,5 +294,5 @@ int I3C::DAA( const uint8_t *address_list, uint8_t count, i3c_device_info_t** de
 
 	return devCount;
 }
-
-#endif // !CPU_MCXC444VLH
+#else	// I3C_SUPPORTED
+#endif	// I3C_SUPPORTED

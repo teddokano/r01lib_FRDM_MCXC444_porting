@@ -74,7 +74,6 @@ int main( void )
 	I2C		i2c( I2C_SDA, I2C_SCL );
 	i2c.scan( 0x10, 0x7E );
 
-
 	constexpr uint8_t	address		= 0x72;
 
 	uint8_t				w_data[]	= { 0 };

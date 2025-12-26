@@ -73,6 +73,9 @@ public:
 	/** variable for reporting last state */
 	status_t				last_status;
 
+protected:
+	DigitalOut				chip_select;
+
 private:
 #ifdef	CPU_MCXC444VLH
 	spi_master_config_t		masterConfig;

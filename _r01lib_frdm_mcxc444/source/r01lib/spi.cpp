@@ -28,7 +28,7 @@ extern "C" {
 #define EXAMPLE_SPI_MASTER_SOURCE_CLOCK kCLOCK_BusClk
 #define EXAMPLE_SPI_MASTER_CLK_FREQ     CLOCK_GetFreq( kCLOCK_BusClk )
 
-SPI::SPI( int mosi, int miso, int sclk, int cs ) : Obj( true )
+SPI::SPI( int mosi, int miso, int sclk, int cs ) : Obj( true ), chip_select( cs )
 {
 	unit_base			= EXAMPLE_SPI_MASTER;
 	master_clk_freq		= EXAMPLE_SPI_MASTER_CLK_FREQ;
@@ -41,7 +41,7 @@ SPI::SPI( int mosi, int miso, int sclk, int cs ) : Obj( true )
 
 	//	pin enable
 	
-	DigitalInOut	_cs(   cs   );
+//	DigitalInOut	_cs(   cs   );
 	DigitalInOut	_mosi( mosi );
 	DigitalInOut	_miso( miso );
 	DigitalInOut	_sclk( sclk );
@@ -51,7 +51,9 @@ SPI::SPI( int mosi, int miso, int sclk, int cs ) : Obj( true )
 	_mosi.pin_mux( mux_setting );
 	_sclk.pin_mux( mux_setting );
 	_miso.pin_mux( mux_setting );
-	_cs.pin_mux(   mux_setting );
+//	_cs.pin_mux(   mux_setting );
+
+	chip_select	= true;
 }
 
 SPI::~SPI()
@@ -79,12 +81,17 @@ void SPI::mode( uint8_t mode )
 status_t SPI::write( uint8_t *wp, uint8_t *rp, int length )
 {
 	spi_transfer_t	masterXfer;
+	status_t		status;
 
 	masterXfer.txData		= wp;
 	masterXfer.rxData		= rp;
 	masterXfer.dataSize		= length;
 
-	return SPI_MasterTransferBlocking( unit_base, &masterXfer );
+	chip_select	= false;
+	status	= SPI_MasterTransferBlocking( unit_base, &masterXfer );
+	chip_select	= true;
+
+	return status;
 }
 
 

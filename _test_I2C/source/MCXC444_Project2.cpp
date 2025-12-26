@@ -71,7 +71,8 @@ int main( void )
 
 #endif
 
-	I2C		i2c( I2C_SDA, I2C_SCL );
+//	I2C		i2c( I2C_SDA, I2C_SCL );
+	I2C		i2c( A4, A5 );
 	i2c.scan( 0x10, 0x7E );
 
 	constexpr uint8_t	address		= 0x72;

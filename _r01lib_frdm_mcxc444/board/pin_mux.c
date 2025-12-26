@@ -74,8 +74,8 @@ BOARD_InitPins:
   - {pin_num: '18', peripheral: GPIOE, signal: 'GPIO, 30', pin_signal: DAC0_OUT/ADC0_SE23/CMP0_IN4/PTE30/TPM0_CH3/TPM_CLKIN1/LPUART1_TX/LPTMR0_ALT1}
   - {pin_num: '19', peripheral: GPIOE, signal: 'GPIO, 31', pin_signal: PTE31/TPM0_CH4}
   - {pin_num: '28', peripheral: GPIOA, signal: 'GPIO, 12', pin_signal: PTA12/TPM1_CH0/I2S0_TXD0}
-  - {pin_num: '23', peripheral: GPIOA, signal: 'GPIO, 1', pin_signal: PTA1/LPUART0_RX/TPM2_CH0, identifier: ''}
-  - {pin_num: '24', peripheral: GPIOA, signal: 'GPIO, 2', pin_signal: PTA2/LPUART0_TX/TPM2_CH1, identifier: ''}
+  - {pin_num: '23', peripheral: LPUART0, signal: RX, pin_signal: PTA1/LPUART0_RX/TPM2_CH0}
+  - {pin_num: '24', peripheral: LPUART0, signal: TX, pin_signal: PTA2/LPUART0_TX/TPM2_CH1}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */
@@ -99,8 +99,8 @@ void BOARD_InitPins(void)
     /* Port E Clock Gate Control: Clock enabled */
     CLOCK_EnableClock(kCLOCK_PortE);
 
-    /* PORTA1 (pin 23) is configured as PTA1 */
-    PORT_SetPinMux(PORTA, 1U, kPORT_MuxAsGpio);
+    /* PORTA1 (pin 23) is configured as LPUART0_RX */
+    PORT_SetPinMux(BOARD_INITPINS_DEBUG_UART_RX_PORT, BOARD_INITPINS_DEBUG_UART_RX_PIN, kPORT_MuxAlt2);
 
     /* PORTA12 (pin 28) is configured as PTA12 */
     PORT_SetPinMux(PORTA, 12U, kPORT_MuxAsGpio);
@@ -108,8 +108,8 @@ void BOARD_InitPins(void)
     /* PORTA13 (pin 29) is configured as PTA13 */
     PORT_SetPinMux(PORTA, 13U, kPORT_MuxAsGpio);
 
-    /* PORTA2 (pin 24) is configured as PTA2 */
-    PORT_SetPinMux(PORTA, 2U, kPORT_MuxAsGpio);
+    /* PORTA2 (pin 24) is configured as LPUART0_TX */
+    PORT_SetPinMux(BOARD_INITPINS_DEBUG_UART_TX_PORT, BOARD_INITPINS_DEBUG_UART_TX_PIN, kPORT_MuxAlt2);
 
     /* PORTA4 (pin 26) is configured as PTA4 */
     PORT_SetPinMux(BOARD_INITPINS_SW3_PORT, BOARD_INITPINS_SW3_PIN, kPORT_MuxAsGpio);
@@ -212,6 +212,16 @@ void BOARD_InitPins(void)
 
     /* PORTE31 (pin 19) is configured as PTE31 */
     PORT_SetPinMux(BOARD_INITPINS_LED_RED_PORT, BOARD_INITPINS_LED_RED_PIN, kPORT_MuxAsGpio);
+
+    SIM->SOPT5 = ((SIM->SOPT5 &
+                   /* Mask bits to zero which are setting */
+                   (~(SIM_SOPT5_LPUART0TXSRC_MASK | SIM_SOPT5_LPUART0RXSRC_MASK)))
+
+                  /* LPUART0 Transmit Data Source Select: LPUART0_TX pin. */
+                  | SIM_SOPT5_LPUART0TXSRC(SOPT5_LPUART0TXSRC_LPUART_TX)
+
+                  /* LPUART0 Receive Data Source Select: LPUART_RX pin. */
+                  | SIM_SOPT5_LPUART0RXSRC(SOPT5_LPUART0RXSRC_LPUART_RX));
 }
 /***********************************************************************************************************************
  * EOF

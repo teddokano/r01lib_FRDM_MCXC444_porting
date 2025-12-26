@@ -25,6 +25,7 @@ extern "C" {
 
 #include "mcu.h"
 #include "obj.h"
+#include "io.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wprio-ctor-dtor"
@@ -185,6 +186,18 @@ void init_mcu( void )
 	BOARD_InitBootPins();
 	BOARD_InitBootClocks();
 	BOARD_InitDebugConsole();
+
+#if (defined(SDK_DEBUGCONSOLE) && (SDK_DEBUGCONSOLE == DEBUGCONSOLE_REDIRECT_TO_SDK))	
+	/* PORTA1 (pin 23) is configured as LPUART0_RX */
+	/* PORTA2 (pin 24) is configured as LPUART0_TX */
+	PORT_SetPinMux( BOARD_INITPINS_DEBUG_UART_RX_PORT, BOARD_INITPINS_DEBUG_UART_RX_PIN, kPORT_MuxAlt2 );
+	PORT_SetPinMux( BOARD_INITPINS_DEBUG_UART_TX_PORT, BOARD_INITPINS_DEBUG_UART_TX_PIN, kPORT_MuxAlt2 );
+#else
+	/* PORTA1 (pin 23) is configured as LPUART0_RX */
+	/* PORTA2 (pin 24) is configured as LPUART0_TX */
+	PORT_SetPinMux( BOARD_INITPINS_DEBUG_UART_RX_PORT, BOARD_INITPINS_DEBUG_UART_RX_PIN, kPORT_MuxAsGpio );
+	PORT_SetPinMux( BOARD_INITPINS_DEBUG_UART_TX_PORT, BOARD_INITPINS_DEBUG_UART_TX_PIN, kPORT_MuxAsGpio );
+#endif // (defined(SDK_DEBUGCONSOLE) && (SDK_DEBUGCONSOLE == DEBUGCONSOLE_REDIRECT_TO_SDK))
 
 
 #else
